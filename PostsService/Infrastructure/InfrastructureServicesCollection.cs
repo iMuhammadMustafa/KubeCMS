@@ -7,7 +7,7 @@ namespace PostsService.Infrastructure;
 
 public static class InfrastructureServicesCollection
 {
-    private const string CONNECTION_STRING_NAME = "DefaultConnection";
+    private const string DB_CONNECTION_STRING_NAME = "DefaultConnection";
     private const string REDIS_CONNECTION_STRING_NAME = "Redis:ConnectionString";
     private const string RabbitMQ_CONNECTION_HOST = "RabbitMq:Connection:Host";
     private const string RabbitMQ_CONNECTION_PORT = "RabbitMq:Connection:Port";
@@ -59,16 +59,16 @@ public static class InfrastructureServicesCollection
 
         services.AddDbContext<AppDbContext>(options =>
         {
-#if DEBUG
-            options.UseNpgsql(_configuration.GetConnectionString(CONNECTION_STRING_NAME));
+            options.UseNpgsql(_configuration.GetConnectionString(DB_CONNECTION_STRING_NAME));
+            //#if DEBUG
 
-#else
-            Console.WriteLine($"---> {_configuration.GetConnectionString(CONNECTION_STRING_NAME)}");
-            options.UseNpgsql(_configuration.GetConnectionString(CONNECTION_STRING_NAME));
-            //options.UseSqlServer(_configuration.GetConnectionString("AzureSQLConnection"));
-            //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            //#else
+            //            Console.WriteLine($"---> {_configuration.GetConnectionString(CONNECTION_STRING_NAME)}");
+            //            options.UseNpgsql(_configuration.GetConnectionString(CONNECTION_STRING_NAME));
+            //            //options.UseSqlServer(_configuration.GetConnectionString("AzureSQLConnection"));
+            //            //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 
-#endif
+            //#endif
         });
 
         return services;

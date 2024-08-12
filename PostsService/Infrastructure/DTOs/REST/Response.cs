@@ -122,13 +122,8 @@ public class Pagination
 
     public Pagination()
     {
-        _pageNumber = 0;
+        _pageNumber = 1;
         _pageSize = 10;
-    }
-    public Pagination(int pageNumber, int pageSize)
-    {
-        _pageNumber = pageNumber;
-        _pageSize = pageSize;
     }
     public int Page
     {
@@ -138,7 +133,7 @@ public class Pagination
         }
         set
         {
-            _pageNumber = value < 0 ? 0 : value;
+            _pageNumber = value < 1 ? 1 : value;
         }
 
     }
