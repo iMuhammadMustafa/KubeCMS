@@ -8,3 +8,16 @@ docker run --name commentsdb -d -p 3300:3306 -e MYSQL_ROOT_PASSWORD=P4ssword! -e
 
 
 docker run --name ratingsdb -d -p 27000:27017 -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=mysecretpassword -e MONGO_INITDB_DATABASE=StructorCMS mongo
+
+
+
+---
+
+kubectl apply -f redis-depl.yaml
+kubectl apply -f rabbit-depl.yaml
+kubectl apply -f comments-db-depl.yaml
+kubectl apply -f posts-db-depl.yaml
+
+kubectl apply -f posts-depl.yaml
+kubectl apply -f comments-depl.yaml
+kubectl apply -f ratings-depl.yaml
